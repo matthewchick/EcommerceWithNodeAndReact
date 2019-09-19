@@ -1,8 +1,8 @@
-const Category = require('../models/categoryModel');
+const Product = require('../models/productModel');
 const {errorHandler} = require('../helpers/dbErrorHandler');
 
 exports.create = (req, res) => {
-    console.log("req.body", req.body);        //from postman
+    console.log("req.body", req.body);
     const category = new Category(req.body)
     
     category.save((err, data) => {

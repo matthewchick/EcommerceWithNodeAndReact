@@ -9,10 +9,12 @@ const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
 
 require('dotenv').config();
+
 // import routes
 const authRoutes = require('./routes/auth_route');
 const userRoutes = require('./routes/user_route');
 const categoryRoutes = require('./routes/category_route');
+const productRoutes = require('./routes/product_route');
 
 // app
 const app = express();
@@ -40,6 +42,7 @@ app.use(expressValidator());
 app.use("/api", authRoutes);   //use middleware, router instead of the following codes like springBoot @restcontroller
 app.use("/api", userRoutes); 
 app.use("/api", categoryRoutes); 
+app.use("/api", productRoutes); 
 
 /*
 app.get("/", (req, res) => {
