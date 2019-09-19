@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema(
             required: true,
             maxlength: 32
         },
-        price: {
+        category: {
             type: ObjectId,
             ref: 'Category',
             required: true
@@ -44,4 +44,4 @@ const productSchema = new mongoose.Schema(
 
 //To use our schema definition, we need to convert our userSchema into a Model we can work with.
 //https://mongoosejs.com/docs/guide.html
-module.exports = mongoose.model("Product", productSchema);   //var User = mongoose.model('Category', categorySchema)
+module.exports = mongoose.model("Product", productSchema);   //var User = mongoose.model('Product', productSchema)
