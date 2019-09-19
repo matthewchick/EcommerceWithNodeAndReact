@@ -8,6 +8,6 @@ router.get('/secret/:userId', requireSignin, isAuth, isAdmin, (req, res)=> {
         user: req.profile
     });
 });
-router.param('userId', userById)
+router.param('userId', userById);
 
 module.exports = router;   // allow the other file to import

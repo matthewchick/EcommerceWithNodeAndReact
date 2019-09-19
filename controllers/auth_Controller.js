@@ -61,6 +61,7 @@ exports.signin = (req, res) => {
         return res.json({token, user: {_id, name, email, role}})
     });
 };
+
 exports.signup = (req, res) => {
     console.log("req.body", req.body);
     const user = new User(req.body)

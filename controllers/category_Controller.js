@@ -1,4 +1,4 @@
-const User = require('../models/categoryModel');
+const Category = require('../models/categoryModel');
 const {errorHandler} = require('../helpers/dbErrorHandler');
 
 exports.create = (req, res) => {
