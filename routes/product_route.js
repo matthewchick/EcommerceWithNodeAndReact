@@ -1,7 +1,16 @@
 // Create express router
 const express = require('express');
 const router = express.Router();
-const { create, productById, getProduct, removeProduct, updateProduct, listProducts, listRelated } = require('../controllers/product_Controller');   //destruct for functions
+const { create, 
+    productById, 
+    getProduct, 
+    removeProduct, 
+    updateProduct, 
+    listProducts, 
+    listRelated, 
+    listCategories,
+    listBySearch
+} = require('../controllers/product_Controller');   //destruct for functions
 const { userSignupValidator } = require('../validator/validator');
 const { requireSignin, isAdmin, isAuth } = require('../controllers/auth_Controller'); 
 const { userById } = require('../controllers/user_Controller');  
@@ -13,6 +22,8 @@ router.delete('/product/:productId/:userId', requireSignin, isAuth, isAdmin, rem
 router.put('/product/:productId/:userId', requireSignin, isAuth, isAdmin, updateProduct);
 router.get('/products', listProducts);
 router.get('/products/related/:productId', listRelated);
+router.get('/products/categories', listCategories);
+router.post("/products/by/search", listBySearch);
 
 router.param('userId', userById);
 router.param('productId', productById);
