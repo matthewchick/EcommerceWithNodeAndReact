@@ -9,7 +9,8 @@ const { create,
     listProducts, 
     listRelated, 
     listCategories,
-    listBySearch
+    listBySearch, 
+    photo
 } = require('../controllers/product_Controller');   //destruct for functions
 const { userSignupValidator } = require('../validator/validator');
 const { requireSignin, isAdmin, isAuth } = require('../controllers/auth_Controller'); 
@@ -24,6 +25,7 @@ router.get('/products', listProducts);
 router.get('/products/related/:productId', listRelated);
 router.get('/products/categories', listCategories);
 router.post("/products/by/search", listBySearch);
+router.get("/products/photo/:productId", photo);
 
 router.param('userId', userById);
 router.param('productId', productById);
