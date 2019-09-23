@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 // parsing cookies attached to the client request object
 const cookieParser = require('cookie-parser');
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+const cors = require('cors');
 const expressValidator = require('express-validator');
 
 require('dotenv').config();
@@ -38,6 +40,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
+app.use(cors());
 
 // routes middleware
 app.use("/api", authRoutes);   //use middleware, router instead of the following codes like springBoot @restcontroller
