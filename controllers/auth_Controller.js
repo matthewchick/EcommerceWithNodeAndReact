@@ -62,20 +62,31 @@ exports.signin = (req, res) => {
     });
 };
 
-exports.signup = (req, res) => {
-    console.log("req.body", req.body);
-    const user = new User(req.body)
-    user.save((err, user) => {
-        if (err){
-            return res.status(400).json({
-                err: errorHandler(err)
-            });
-        }
-        // do not show salt and password 
-        user.salt = undefined;
-        user.hashed_password = undefined;
-        res.json({
-            user
+// It is used to solve the email taken problem
+exports.signup = async (req, res) => {
+    const userExists = await User.findOne({ email: req.body.email });
+    if (userExists)
+        return res.status(403).json({
+            error: 'The Email is already used!'
         });
-    });
+    const user = await new User(req.body);
+    await user.save();
+    res.status(200).json({ message: 'Signup success! Please login.' });
 };
+// exports.signup = (req, res) => {
+//     console.log("req.body", req.body);
+//     const user = new User(req.body)
+//     user.save((err, user) => {
+//         if (err){
+//             return res.status(400).json({
+//                 err: errorHandler(err)
+//             });
+//         }
+//         // do not show salt and password 
+//         user.salt = undefined;
+//         user.hashed_password = undefined;
+//         res.json({
+//             user
+//         });
+//     });
+// };
